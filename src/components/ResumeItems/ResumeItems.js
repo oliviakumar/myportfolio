@@ -1,10 +1,6 @@
 import React from 'react';
 
-import Toggle from '../SideBar/Toggle';
-import diamond from '../diamond.png';
-
-
-import './Toolbar.css';
+import './ResumeItems.css';
 
 const toolbar = props => (
 	<header className="toolbar">

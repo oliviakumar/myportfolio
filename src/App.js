@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import Toolbar from './components/Toolbar/Toolbar';
+import SideBar from './components/SideBar/SideBar';
+import BackGround from './components/BackGround/Background';
+
 
 class App extends Component {
+
+  state = {
+    sideBarOpen: false
+  };
+
+  toggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideBarOpen: !prevState.sideBarOpen};
+    });
+  };
+
+  backgroundClickHandler = () => {
+    this.setState({sideBarOpen: false})
+  };
+
   render() {
+    let sideBar;
+    let background;
+
+    if (this.state.sideBarOpen) {
+      sideBar = <SideBar/>
+      background = <BackGround click={this.backgroundClickHandler}/>
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div style={{height: '100%'}}>
+        <Toolbar sidebarClickHandler={this.toggleClickHandler}/>
+        {sideBar}
+        {background}
+        <main style={{marginTop: '64px'}}>
+          <p> content </p>
+        </main>
       </div>
     );
   }

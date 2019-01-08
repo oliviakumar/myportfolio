@@ -32,7 +32,7 @@ class App extends Component {
 
   doSearch() {
     console.log("perform search");
-    const urlString = "https://api.themoviedb.org/3/movie/550?api_key=9039acf78f91a3b698247bfb235f222d";
+    const urlString = "https://api.themoviedb.org/3/search/movie?query=avengers&api_key=9039acf78f91a3b698247bfb235f222d";
     $.ajax({
       url: urlString,
       success: (searchResults) => {

@@ -10,10 +10,28 @@ class App extends Component {
   constructor(props) {
     super(props)
     console.log("yuhhh")
-    this.state = {};
-    
-    this.doSearch();
+    // const items = [
+    //   {id: 0, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "app", overview: "..."},
+    //   {id: 1, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "proj", overview: "..."},
+    //   {id: 3, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "aff", overview: "..."}
+    // ]
 
+    // this.state = {rows: [
+    //   <p key="0"> This is my row </p>,
+    //   <p key="1"> This is my row </p>,
+    //   <p key="2"> This is my row </p>
+
+    // ]}
+
+    // var itemRows = []
+    // items.forEach((item) => {
+    //   console.log(item.title)
+    //   const itemRow = <ResumeItems key={item.id} item={item} />
+    //   itemRows.push(itemRow)
+    // })
+
+    // this.state = {rows: itemRows}
+    this.doSearch();
   }
 
   state = {
@@ -32,20 +50,22 @@ class App extends Component {
 
   doSearch() {
     console.log("perform search");
-    const urlString = "https://api.themoviedb.org/3/search/movie?query=avengers&api_key=9039acf78f91a3b698247bfb235f222d";
+    const urlString = "https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=avengers&language=en-US&api_key=9039acf78f91a3b698247bfb235f222d";
     $.ajax({
       url: urlString,
       success: (searchResults) => {
         console.log("fetched data successfully");
         // console.log(searchResults);
-        const results = searchResults.genres;
+        const results = searchResults.results;
         // console.log(results[0]);
 
         var itemRows = [];
 
         results.forEach((item) => {
-          console.log(item.title);
-          const itemRow = <ResumeItems item={item}/>
+          item.pic_src = "https://image.tmdb.org/t/p/w500" + item.poster_path;
+          // console.log(item.title);
+          // console.log(item.poster_path);
+          const itemRow = <ResumeItems key={item.id} item={item}/>
           itemRows.push(itemRow);
         })
         this.setState({rows: itemRows});
@@ -77,7 +97,7 @@ class App extends Component {
           <div className="content">
             <div className="app">
               <p> hi </p>
-              //TODO: how to center this input 
+               {/*TODO how to center this input*/}
               <input style={{
                 fontSize: 24,
                 display: 'block',
@@ -89,12 +109,11 @@ class App extends Component {
 
             </div>
             {this.state.rows}
-
           </div>
         </main>
       </div>
     );
-}
+  }
 }
 
 export default App;

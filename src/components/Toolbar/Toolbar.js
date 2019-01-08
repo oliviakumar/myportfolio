@@ -16,7 +16,7 @@ const toolbar = props => (
 			<div className="half-spacer"></div>
 			<div className="mini-pad"></div>
 
-			<img width="55" src={diamond}/>
+			<img alt="pic" width="55" src={diamond}/>
 
 			<div className="toolbar__logo"><a href="/">LOGO</a></div>
 			<div className="spacer"></div>

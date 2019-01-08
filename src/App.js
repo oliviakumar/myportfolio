@@ -10,28 +10,28 @@ class App extends Component {
   constructor(props) {
     super(props)
     console.log("yuhhh")
-    // const items = [
-    //   {id: 0, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "app", overview: "..."},
-    //   {id: 1, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "proj", overview: "..."},
-    //   {id: 3, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "aff", overview: "..."}
-    // ]
+    const items = [
+      {id: 0, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "app", overview: "..."},
+      {id: 1, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "proj", overview: "..."},
+      {id: 3, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "aff", overview: "..."}
+    ]
 
-    // this.state = {rows: [
-    //   <p key="0"> This is my row </p>,
-    //   <p key="1"> This is my row </p>,
-    //   <p key="2"> This is my row </p>
+    this.state = {rows: [
+      <p key="0"> This is my row </p>,
+      <p key="1"> This is my row </p>,
+      <p key="2"> This is my row </p>
 
-    // ]}
+    ]}
 
-    // var itemRows = []
-    // items.forEach((item) => {
-    //   console.log(item.title)
-    //   const itemRow = <ResumeItems key={item.id} item={item} />
-    //   itemRows.push(itemRow)
-    // })
+    var itemRows = []
+    items.forEach((item) => {
+      console.log(item.title)
+      const itemRow = <ResumeItems key={item.id} item={item} />
+      itemRows.push(itemRow)
+    })
 
-    // this.state = {rows: itemRows}
-    this.doSearch();
+    this.state = {rows: itemRows}
+    // this.doSearch("woman");
   }
 
   state = {
@@ -48,9 +48,9 @@ class App extends Component {
     this.setState({sideBarOpen: false})
   };
 
-  doSearch() {
+  doSearch(searchQuery) {
     console.log("perform search");
-    const urlString = "https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=avengers&language=en-US&api_key=9039acf78f91a3b698247bfb235f222d";
+    const urlString = "https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&language=en-US&api_key=9039acf78f91a3b698247bfb235f222d&query=" + searchQuery;
     $.ajax({
       url: urlString,
       success: (searchResults) => {
@@ -105,7 +105,7 @@ class App extends Component {
                 paddingTop: 8,
                 paddingBottom: 8,
                 paddingLeft: 16
-              }} placeholder="enter search"/>
+              }} onChange={this.searchChangeHandler} placeholder="enter search"/>
 
             </div>
             {this.state.rows}

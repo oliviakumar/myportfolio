@@ -1,31 +1,25 @@
 import React from 'react';
 
-import './ResumeItems.css';
+class ResumeItems extends React.Component {
+	render() {
+      return <table key={this.props.item.id}>
+	      <tbody>
+	        <tr>
+	          <td>
+	            <img alt="pic" width="175" src={this.props.item.pic_src} style={{
+	              paddingTop: 8,
+	              paddingBottom: 48,
+	              paddingLeft: 16
+	            }}/>
+	          </td>
+	          <td>
+	            {this.props.item.title}
+	            <p> {this.props.item.overview} </p>
+	          </td>
 
-const toolbar = props => (
-	<header className="toolbar">
-
-		<nav className="toolbar__navigation">
-			<div>
-				<Toggle click={props.sidebarClickHandler}/>
-			</div>
-			<div className="half-spacer"></div>
-			<div className="mini-pad"></div>
-
-			<img width="55" src={diamond}/>
-
-			<div className="toolbar__logo"><a href="/">LOGO</a></div>
-			<div className="spacer"></div>
-
-			<div className="toolbar_navigation-items">
-				<ul>
-					<li><a href="/">prods</a></li>
-					<li><a href="/">etc</a></li>
-				</ul>
-			</div>
-		</nav>
-	</header>
-
-);
-
-export default toolbar;
+	        </tr>
+	      </tbody>
+	    </table>
+    }
+}
+export default ResumeItems;

@@ -3,24 +3,17 @@ import React, { Component } from 'react';
 import Toolbar from './components/Toolbar/Toolbar';
 import SideBar from './components/SideBar/SideBar';
 import BackGround from './components/BackGround/Background';
-// import ResumeItems from './components/ResumeItems/ResumeItems';
+import ResumeItems from './components/ResumeItems/ResumeItems';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
     super(props)
     console.log("yuhhh")
-    const items = [
-      {id: 0, title: "app", overview: "..."},
-      {id: 1, title: "proj", overview: "..."},
-      {id: 3, title: "aff", overview: "..."}
-    ]
+    this.state = {};
+    
+    this.doSearch();
 
-    this.state = {rows: [
-      <p key="0"> This is my row </p>,
-      <p key="1"> This is my row </p>,
-      <p key="2"> This is my row </p>
-
-      ]}
   }
 
   state = {
@@ -36,6 +29,33 @@ class App extends Component {
   backgroundClickHandler = () => {
     this.setState({sideBarOpen: false})
   };
+
+  doSearch() {
+    console.log("perform search");
+    const urlString = "https://api.themoviedb.org/3/movie/550?api_key=9039acf78f91a3b698247bfb235f222d";
+    $.ajax({
+      url: urlString,
+      success: (searchResults) => {
+        console.log("fetched data successfully");
+        // console.log(searchResults);
+        const results = searchResults.genres;
+        // console.log(results[0]);
+
+        var itemRows = [];
+
+        results.forEach((item) => {
+          console.log(item.title);
+          const itemRow = <ResumeItems item={item}/>
+          itemRows.push(itemRow);
+        })
+        this.setState({rows: itemRows});
+      },
+      error: (xhr, status, err) => {
+        console.error("failed to fetch data");
+      }
+    })
+  }
+
 
   render() {
     let sideBar;
@@ -54,12 +74,28 @@ class App extends Component {
         <main style={{marginTop: '64px'}}>
           <p> content </p>
           <p> . </p>
+          <div className="content">
+            <div className="app">
+              <p> hi </p>
+              //TODO: how to center this input 
+              <input style={{
+                fontSize: 24,
+                display: 'block',
+                width: "99%",
+                paddingTop: 8,
+                paddingBottom: 8,
+                paddingLeft: 16
+              }} placeholder="enter search"/>
 
-          {this.state.rows}
+            </div>
+            {this.state.rows}
+
+          </div>
         </main>
       </div>
     );
-  }
+}
 }
 
 export default App;
+//     itemRows.push(<p key={item.id}> item title: {item.title}</p>)

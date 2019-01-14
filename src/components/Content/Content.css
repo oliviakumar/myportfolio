@@ -1,19 +1,14 @@
+/*.container_row {
+	height: 50%;
+}*/
+
 .container_row:hover {
   /*-webkit-box-shadow: -1px 9px 40px -12px rbga(0,0,0,0.75);*/
   /*-moz-box-shadow: -1px 9px 40px -12px rbga(0,0,0,0.75);*/
   /*box-shadow: -1px 9px 40px -12px rbga(0,0,0,0.75);*/
 	box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.5);
 }
-.teehee1 {
-	color: blue;
-}
-.teehee {
-	color: blue;
-	/*float: right;*/
-	left: 4;
-	
-}
 
 .spacer {
-	flex: 1;
+	/*flex: 1;*/
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
 import Toggle from '../SideBar/Toggle';
 import diamond from '../diamond.png';
 
@@ -7,8 +7,9 @@ import diamond from '../diamond.png';
 import './Toolbar.css';
 
 const toolbar = props => (
+	<Nav>
+	
 	<header className="toolbar">
-
 		<nav className="toolbar__navigation">
 			<div>
 				<Toggle click={props.sidebarClickHandler}/>
@@ -16,7 +17,7 @@ const toolbar = props => (
 			<div className="half-spacer"></div>
 			<div className="mini-pad"></div>
 
-			<img alt="pic" width="55" src={diamond}/>
+			<img width="55" src={diamond}/>
 
 			<div className="toolbar__logo"><a href="/">LOGO</a></div>
 			<div className="spacer"></div>
@@ -27,8 +28,10 @@ const toolbar = props => (
 					<li><a href="/">etc</a></li>
 				</ul>
 			</div>
+
 		</nav>
 	</header>
+	</Nav>
 
 );
 

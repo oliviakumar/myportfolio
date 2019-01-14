@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
+import { Button, Card, Container, Row, Col, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, Collapse, UncontrolledDropdown, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
 
 import Toolbar from './components/Toolbar/Toolbar';
 import SideBar from './components/SideBar/SideBar';
+import NavBar from './components/NavBar/NavBar';
+
 import BackGround from './components/BackGround/Background';
 import ResumeItems from './components/ResumeItems/ResumeItems';
+import Content from './components/Content/Content';
+import drdog from './drdog.jpg';
+
 import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
     super(props)
-    console.log("yuhhh")
+
+    /* toggle */
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false
+    };
+
+    /* items */
     const items = [
       {id: 0, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "app", overview: "..."},
       {id: 1, pic_src: "https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png", title: "proj", overview: "..."},
@@ -33,7 +46,16 @@ class App extends Component {
     this.state = {rows: itemRows}
     // this.doSearch("woman");
   }
+  /* end constructor */
 
+  /* toggle function */
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    })
+  }
+
+  /* sidebar */
   state = {
     sideBarOpen: false
   };
@@ -87,16 +109,67 @@ class App extends Component {
     }
     return (
       <div style={{height: '100%'}}>
-        <Toolbar sidebarClickHandler={this.toggleClickHandler}/>
+
+        {/*<Toolbar sidebarClickHandler={this.toggleClickHandler}/>*/}
         {sideBar}
         {background}
-        
+        {/* fuck my luck */}
+        <div>
+              <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/components/">Components</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+      {/* */}
+        {/*<img alt="pic" width="100%" height="50%" src={drdog}/>*/}
+
+        <div className="viewbtn"> <a href="#content"> View Content </a> </div>
+        <a href="/more">More</a>
+        <NavBar/>
+
         <main style={{marginTop: '64px'}}>
           <p> content </p>
           <p> . </p>
           <div className="content">
             <div className="app">
               <p> hi </p>
+              <Content/>
+
+
+              <Button color="primary" active={false}>Button</Button>{' '}
+        <Card body>
+          <Button>Go somewhere</Button>
+        </Card>
+              {/**/}
+
+
                {/*TODO how to center this input*/}
               <input style={{
                 fontSize: 24,
@@ -108,7 +181,22 @@ class App extends Component {
               }} onChange={this.searchChangeHandler} placeholder="enter search"/>
 
             </div>
-            {this.state.rows}
+            <div id="content">
+
+              {this.state.rows}
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              <Content/>
+              
+            </div>
+            
           </div>
         </main>
       </div>

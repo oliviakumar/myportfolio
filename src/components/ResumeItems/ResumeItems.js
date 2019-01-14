@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, Button, CardTitle, CardText } from 'reactstrap';
 
 class ResumeItems extends React.Component {
 	render() {
@@ -15,10 +16,12 @@ class ResumeItems extends React.Component {
 	          <td>
 	            {this.props.item.title}
 	            <p> {this.props.item.overview} </p>
-	          </td>
 
+	          </td>
+			
 	        </tr>
 	      </tbody>
+	      
 	    </table>
     }
 }

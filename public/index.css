@@ -1,0 +1,41 @@
+.container {
+	/*margin-top: 8%;*/
+	/*margin-bottom: 8%;*/
+	/*margin-right: 20%;*/
+	/*margin-left: 20%;*/
+	margin: 240px auto;
+	/*padding: 0 0.5rem;*/
+	padding: 1 1 0.5rem;
+
+
+}
+.container .card {
+	margin-left: 20%;
+
+	padding: 1 1 0.5rem;
+}
+
+.card {
+	margin-left: 2%;
+	margin-bottom: 2%;
+	padding: 1 1 0.5rem;
+}
+
+.card:hover {
+  /*-webkit-box-shadow: -1px 9px 40px -12px rbga(0,0,0,0.75);*/
+  /*-moz-box-shadow: -1px 9px 40px -12px rbga(0,0,0,0.75);*/
+  /*box-shadow: -1px 9px 40px -12px rbga(0,0,0,0.75);*/
+	box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.5);
+	margin-left: 1%;
+
+}
+
+.card a {
+	padding: 0 0.5rem;
+	color: pink;
+}
+
+.viewbtn {
+	text-align: center;
+	display: block;
+}

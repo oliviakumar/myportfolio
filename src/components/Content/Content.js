@@ -22,7 +22,6 @@ const Content = (props) => {
 
         </Card>
 
-
       </div>
 
       </div>
